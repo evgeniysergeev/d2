@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -60,14 +60,14 @@
     <Compile Include="Traits\Buildings\D2ConcreteOwners.cs" />
     <Compile Include="Traits\D2AffectsShroud.cs" />
     <Compile Include="Traits\D2RevealsShroud.cs" />
+    <Compile Include="Widgets\D2SpriteWidget.cs" />
     <Compile Include="Widgets\WsaPlayerWidget.cs" />
     <Compile Include="Widgets\Logic\D2AssetBrowserLogic.cs" />
     <Compile Include="Widgets\Logic\D2MissionBrowserLogic.cs" />
+    <Compile Include="Widgets\Logic\Ingame\D2IngameInfoDisplayLogic.cs" />
     <Compile Include="FileFormats\WsaReader.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Widgets\Logic\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\engine\OpenRA.Mods.Common\OpenRA.Mods.Common.csproj">
       <Project>{FE6C8CC0-2F07-442A-B29F-17617B3B7FC6}</Project>
