@@ -60,8 +60,10 @@
     <Compile Include="Traits\Buildings\D2ConcreteOwners.cs" />
     <Compile Include="Traits\D2AffectsShroud.cs" />
     <Compile Include="Traits\D2RevealsShroud.cs" />
+    <Compile Include="Widgets\D2ProgressBarWidget.cs" />
     <Compile Include="Widgets\D2SpriteWidget.cs" />
     <Compile Include="Widgets\WsaPlayerWidget.cs" />
+    <Compile Include="Widgets\D2WidgetUtils.cs" />
     <Compile Include="Widgets\Logic\D2AssetBrowserLogic.cs" />
     <Compile Include="Widgets\Logic\D2MissionBrowserLogic.cs" />
     <Compile Include="Widgets\Logic\Ingame\D2IngameInfoDisplayLogic.cs" />

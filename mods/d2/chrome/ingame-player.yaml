@@ -518,12 +518,22 @@ Container@PLAYER_WIDGETS:
 					Width: 226
 					Height: 120
 				Label@NAME:
-					X: 8
-					Y: 4
-					Width: 200
+					X: 10
+					Y: 6
+					Width: 118
 					Height: 32
 				D2Sprite@ICON:
-					X: 8
-					Y: 32
+					X: 10
+					Y: 34
 					Width: 64
 					Height: 48
+				D2ProgressBar@HEALTH:
+					X: 80
+					Y: 34
+					Width: 48
+					Height: 24
+				Label@DMG:
+					X: 80
+					Y: 62
+					Width: 48
+					Height: 16

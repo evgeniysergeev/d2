@@ -28,6 +28,8 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 
 		readonly LabelWidget label;
 		readonly D2SpriteWidget preview;
+		readonly D2ProgressBarWidget health;
+		readonly LabelWidget dmgLabel;
 
 		int selectionHash;
 		Actor[] selectedActors = { };
@@ -38,14 +40,35 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 			this.world = world;
 			this.worldRenderer = worldRenderer;
 
-			var panelColor = Color.FromArgb(186,190,150);
+			var panelColor = Color.FromArgb(186, 190, 150);
+			var textColor = Color.FromArgb(71, 71, 55);
 
 			var panel = widget.GetOrNull<ColorBlockWidget>("PANEL");
 			if (panel != null)
 				panel.GetColor = () => panelColor;
 
 			label = widget.GetOrNull<LabelWidget>("NAME");
+			if (label != null)
+			{
+				label.Align = TextAlign.Center;
+				label.TextColor = textColor;
+			}
+
 			preview = widget.GetOrNull<D2SpriteWidget>("ICON");
+			health = widget.GetOrNull<D2ProgressBarWidget>("HEALTH");
+			if (health != null)
+			{
+				health.Visible = false;
+			}
+
+			dmgLabel = widget.GetOrNull<LabelWidget>("DMG");
+			if (dmgLabel != null)
+			{
+				dmgLabel.Text = "DMG";
+				dmgLabel.Align = TextAlign.Center;
+				dmgLabel.TextColor = textColor;
+				dmgLabel.Visible = false;
+			}
 		}
 		public override void Tick()
 		{
@@ -66,11 +89,16 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 			if (selectedActors.Length == 1)
 			{
 				var actor = selectedActors[0];
-				var tooltip = actor.TraitsImplementing<Tooltip>();
-				if (tooltip.Any())
-					label.Text = tooltip.FirstOrDefault(t => !t.IsTraitDisabled).Info.Name;
-				else
-					label.Text = actor.Info.Name;
+				if (label != null)
+				{
+					var tooltip = actor.TraitsImplementing<Tooltip>();
+					if (tooltip.Any())
+						label.Text = tooltip.FirstOrDefault(t => !t.IsTraitDisabled).Info.Name;
+					else
+					{
+						label.Text = actor.Info.Name;
+					}
+				}
 
 				var faction = world.LocalPlayer.Faction.Name;
 				var rsi = actor.Info.TraitInfo<RenderSpritesInfo>();
@@ -78,15 +106,50 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 				var bi = actor.Info.TraitInfo<BuildableInfo>();
 				icon.Play(bi.Icon);
 
-				preview.Sprite = icon.Image;
-				preview.Palette = worldRenderer.Palette(bi.IconPalette);
-				preview.Scale = 2.0f;
-				preview.Offset = float2.Zero;
+				if (preview != null)
+				{
+					preview.Sprite = icon.Image;
+					preview.Palette = worldRenderer.Palette(bi.IconPalette);
+					preview.Scale = 2.0f;
+					preview.Offset = float2.Zero;
+				}
+
+				if (health != null)
+				{
+					var healthTrait = actor.TraitsImplementing<Health>();
+					if (healthTrait.Any())
+					{
+						health.GetPercentage = () =>
+						{
+							var h = healthTrait.FirstOrDefault();
+							return (h != null) ? h.HP * 100 / h.MaxHP : 0;
+						};
+						health.Visible = true;
+					}
+					else
+					{
+						health.GetPercentage = () => 0;
+						health.Visible = false;
+					}
+				}
+
+				if (dmgLabel != null)
+				{
+					dmgLabel.Visible = true;
+				}
 			}
 			else
 			{
-				preview.Sprite = null;
-				label.Text = "";
+				if (preview != null)
+					preview.Sprite = null;
+				if (label != null)
+					label.Text = "";
+				if (health != null)
+					health.Visible = false;
+				if (dmgLabel != null)
+				{
+					dmgLabel.Visible = false;
+				}
 			}
 
 			selectionHash = world.Selection.Hash;
