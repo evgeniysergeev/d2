@@ -47,17 +47,11 @@ namespace OpenRA.Mods.D2.Widgets
 
 		public static void DrawColoredPanelBorder(Rectangle bounds, int size, Color highlightColor, Color shadowColor)
 		{
-			var rect1 = new Rectangle(bounds.Left, bounds.Top, size, bounds.Height - size);
-			var rect2 = new Rectangle(bounds.Left, bounds.Top, bounds.Width - size, size);
+			WidgetUtils.FillRectWithColor(new Rectangle(bounds.Left, bounds.Top, size, bounds.Height - size), highlightColor);
+			WidgetUtils.FillRectWithColor(new Rectangle(bounds.Left, bounds.Top, bounds.Width - size, size), highlightColor);
 			
-			WidgetUtils.FillRectWithColor(rect1, highlightColor);
-			WidgetUtils.FillRectWithColor(rect2, highlightColor);
-			
-			var rect3 = new Rectangle(bounds.Left + size, bounds.Bottom - size, bounds.Width - size, size);
-			var rect4 = new Rectangle(bounds.Right - size, bounds.Top + size, size, bounds.Height - size);
-			
-			WidgetUtils.FillRectWithColor(rect3, shadowColor);
-			WidgetUtils.FillRectWithColor(rect4, shadowColor);
+			WidgetUtils.FillRectWithColor(new Rectangle(bounds.Left + size, bounds.Bottom - size, bounds.Width - size, size), shadowColor);
+			WidgetUtils.FillRectWithColor(new Rectangle(bounds.Right - size, bounds.Top + size, size, bounds.Height - size), shadowColor);
 		}
 
 		public static void DrawPanelBorder(Rectangle bounds, int size)
@@ -70,19 +64,14 @@ namespace OpenRA.Mods.D2.Widgets
 
 		public static void DrawColoredTriangle(Point a, int size, Color normalColor, Color highlightColor, Color shadowColor)
 		{
-			var rect1 = new Rectangle(a.X - size, a.Y, size, size * 2);
-			var rect2 = new Rectangle(a.X - size * 2, a.Y + size, size, size);
-			var rect3 = new Rectangle(a.X, a.Y + size, size, size);
-			var rect4 = new Rectangle(a.X, a.Y, size, size);
-			var rect5 = new Rectangle(a.X + size, a.Y + size, size, size * 2);
-			var rect6 = new Rectangle(a.X - size * 2, a.Y + size * 2, size * 3, size);
+			WidgetUtils.FillRectWithColor(new Rectangle(a.X - size, a.Y, size, size * 2), highlightColor);
 
-			WidgetUtils.FillRectWithColor(rect1, highlightColor);
-			WidgetUtils.FillRectWithColor(rect2, normalColor);
-			WidgetUtils.FillRectWithColor(rect3, normalColor);
-			WidgetUtils.FillRectWithColor(rect4, shadowColor);
-			WidgetUtils.FillRectWithColor(rect5, shadowColor);
-			WidgetUtils.FillRectWithColor(rect6, shadowColor);
+			WidgetUtils.FillRectWithColor(new Rectangle(a.X - size * 2, a.Y + size, size, size), normalColor);
+			WidgetUtils.FillRectWithColor(new Rectangle(a.X, a.Y + size, size, size), normalColor);
+
+			WidgetUtils.FillRectWithColor(new Rectangle(a.X, a.Y, size, size), shadowColor);
+			WidgetUtils.FillRectWithColor(new Rectangle(a.X + size, a.Y + size, size, size * 2), shadowColor);
+			WidgetUtils.FillRectWithColor(new Rectangle(a.X - size * 2, a.Y + size * 2, size * 3, size), shadowColor);
 		}
 
 		public static void DrawRedTriangle(Point a, int size)

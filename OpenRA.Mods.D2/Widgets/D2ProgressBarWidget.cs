@@ -63,7 +63,7 @@ namespace OpenRA.Mods.D2.Widgets
 
 			var barRect = new Rectangle(r.X + BarMargin, r.Y + BarMargin, barWidth, r.Height - 2 * BarMargin);
 			var barColor = Color.FromArgb(85, 254, 81);
-			if (percentage < 20)
+			if (percentage < 25)
 				barColor = Color.FromArgb(168, 0, 0);
 			else if (percentage < 50)
 				barColor = Color.FromArgb(254, 251, 84);

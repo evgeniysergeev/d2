@@ -505,35 +505,35 @@ Container@PLAYER_WIDGETS:
 									ImageCollection: scrollbar
 									ImageName: down_arrow
 		Container@ACTOR_INFO:
-			Logic: D2IngameInfoDisplayLogic
-			X: WINDOW_RIGHT - 226
-			Y: 568
-			Width: 226
-			Height: 124
+			Logic: D2IngameActorInfoDisplayLogic
+			X: WINDOW_RIGHT - 226 - 134
+			Y: 14
+			Width: 134
+			Height: 192
 			ClickThrough: false
 			Children:
-				ColorBlock@PANEL:
+				D2Panel@PANEL:
 					X: 0
 					Y: 12
-					Width: 226
-					Height: 120
+					Width: 134
+					Height: 192
 				Label@NAME:
-					X: 10
+					X: 8
 					Y: 6
 					Width: 118
 					Height: 32
 				D2Sprite@ICON:
-					X: 10
+					X: 8
 					Y: 34
 					Width: 64
 					Height: 48
 				D2ProgressBar@HEALTH:
-					X: 80
+					X: 78
 					Y: 34
 					Width: 48
 					Height: 24
 				Label@DMG:
-					X: 80
-					Y: 62
+					X: 78
+					Y: 60
 					Width: 48
 					Height: 16
