@@ -164,24 +164,11 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 			if (retreatButton != null)
 			{
 				retreatButton.Visible = false;
-
-				retreatButton.OnClick = () =>
-				{
-					PerformKeyboardOrderOnSelection(a => new Order("Stop", a, false));
-				};
-
-				retreatButton.OnKeyPress = ki => { retreatButton.OnClick(); };
-			}
-
-			guardButton = widget.GetOrNull<D2ButtonWidget>("GUARD");
-			if (guardButton != null)
-			{
-				guardButton.Visible = false;
-				guardButton.IsHighlighted = () => world.OrderGenerator is GuardOrderGenerator;
+				retreatButton.IsHighlighted = () => world.OrderGenerator is GuardOrderGenerator;
 
 				Action<bool> toggle = allowCancel =>
 				{
-					if (guardButton.IsHighlighted())
+					if (retreatButton.IsHighlighted())
 					{
 						if (allowCancel)
 							world.CancelInputMode();
@@ -191,8 +178,21 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 							"Guard", "guard", Game.Settings.Game.MouseButtonPreference.Action);
 				};
 
-				guardButton.OnClick = () => toggle(true);
-				guardButton.OnKeyPress = _ => toggle(false);
+				retreatButton.OnClick = () => toggle(true);
+				retreatButton.OnKeyPress = _ => toggle(false);
+			}
+
+			guardButton = widget.GetOrNull<D2ButtonWidget>("GUARD");
+			if (guardButton != null)
+			{
+				guardButton.Visible = false;
+
+				guardButton.OnClick = () =>
+				{
+					PerformKeyboardOrderOnSelection(a => new Order("Stop", a, false));
+				};
+
+				guardButton.OnKeyPress = ki => { guardButton.OnClick(); };
 			}
 		}
 
@@ -395,7 +395,7 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 					dmgLabel.Visible = false;
 
 				HideExtraInfo();
-				UpdateCommandButtons(false);
+				UpdateCommandButtons(true);
 			}
 
 			selectionHash = world.Selection.Hash;

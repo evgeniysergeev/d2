@@ -47,30 +47,5 @@ namespace OpenRA.Mods.D2.Widgets
 			WidgetUtils.FillRectWithColor(rb, GetColor());
 			D2WidgetUtils.DrawPanelBorder(rb, BarMargin);
 		}
-
-		public override bool HandleMouseInput(MouseInput mi)
-		{
-			if (mi.Button != MouseButton.Left)
-				return false;
-
-			if (mi.Event == MouseInputEvent.Down && !TakeMouseFocus(mi))
-				return false;
-
-			if (HasMouseFocus && mi.Event == MouseInputEvent.Up)
-			{
-				// Only fire the onMouseUp event if we successfully lost focus, and were pressed
-				OnMouseUp(mi);
-
-				return YieldMouseFocus(mi);
-			}
-
-			if (mi.Event == MouseInputEvent.Down)
-			{
-				// OnMouseDown returns false if the button shouldn't be pressed
-				OnMouseDown(mi);
-			}
-
-			return false;
-		}
 	}
 }
