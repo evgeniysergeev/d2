@@ -12,11 +12,10 @@
 using System;
 using System.Linq;
 using OpenRA.Graphics;
-using OpenRA.Mods.Common.Orders;
 using OpenRA.Mods.Common.Traits;
 using OpenRA.Mods.Common.Traits.Render;
 using OpenRA.Mods.Common.Widgets;
-using OpenRA.Orders;
+using OpenRA.Mods.D2.Orders;
 using OpenRA.Primitives;
 using OpenRA.Traits;
 using OpenRA.Widgets;
@@ -136,7 +135,7 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 					if (attackButton.IsHighlighted())
 						world.CancelInputMode();
 					else
-						world.OrderGenerator = new ForceModifiersOrderGenerator(Modifiers.Ctrl, true);
+						world.OrderGenerator = new D2ForceModifiersOrderGenerator(Modifiers.Ctrl, true);
 				};
 
 				attackButton.OnClick = () => toggle(true);
@@ -153,7 +152,7 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 					if (moveButton.IsHighlighted())
 						world.CancelInputMode();
 					else
-						world.OrderGenerator = new ForceModifiersOrderGenerator(Modifiers.Alt, true);
+						world.OrderGenerator = new D2ForceModifiersOrderGenerator(Modifiers.Alt, true);
 				};
 
 				moveButton.OnClick = () => toggle(true);
@@ -164,7 +163,7 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 			if (retreatButton != null)
 			{
 				retreatButton.Visible = false;
-				retreatButton.IsHighlighted = () => world.OrderGenerator is GuardOrderGenerator;
+				retreatButton.IsHighlighted = () => world.OrderGenerator is D2GuardOrderGenerator;
 
 				Action<bool> toggle = allowCancel =>
 				{
@@ -174,7 +173,7 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 							world.CancelInputMode();
 					}
 					else
-						world.OrderGenerator = new GuardOrderGenerator(selectedActors,
+						world.OrderGenerator = new D2GuardOrderGenerator(selectedActors,
 							"Guard", "guard", Game.Settings.Game.MouseButtonPreference.Action);
 				};
 
@@ -205,11 +204,11 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 
 		bool IsForceModifiersActive(Modifiers modifiers)
 		{
-			var fmog = world.OrderGenerator as ForceModifiersOrderGenerator;
+			var fmog = world.OrderGenerator as D2ForceModifiersOrderGenerator;
 			if (fmog != null && fmog.Modifiers.HasFlag(modifiers))
 				return true;
 
-			var uog = world.OrderGenerator as UnitOrderGenerator;
+			var uog = world.OrderGenerator as D2UnitOrderGenerator;
 			if (uog != null && Game.GetModifierKeys().HasFlag(modifiers))
 				return true;
 
