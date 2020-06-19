@@ -38,7 +38,18 @@ namespace OpenRA.Mods.D2.Orders
 			mi.Modifiers |= Modifiers;
 
 			if (cancelOnFirstUse)
-				world.CancelInputMode();
+			{
+				var orders = base.Order(world, cell, worldPixel, mi);
+				int count = 0;
+				foreach (var order in orders)
+				{
+					count++;
+					break;
+				}
+
+				if (count > 0)
+					world.CancelInputMode();
+			}
 
 			return base.Order(world, cell, worldPixel, mi);
 		}
