@@ -13,7 +13,7 @@ namespace OpenRA.Mods.D2.Orders
 {
 	public class D2UnitOrderGeneratorFactory : IOrderGeneratorFactory
 	{
-		public IOrderGenerator GetDefaultOrderGenerator()
+		public IOrderGenerator CreateOrderGenerator()
 		{
 			return new D2UnitOrderGenerator();
 		}
