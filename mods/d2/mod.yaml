@@ -184,7 +184,7 @@ Assemblies:
 	d2|OpenRA.Mods.D2.dll
 
 ChromeLayout:
-	common|chrome/ingame.yaml
+	d2|chrome/ingame.yaml
 	common|chrome/ingame-chat.yaml
 	common|chrome/ingame-fmvplayer.yaml
 	d2k|chrome/ingame-menu.yaml
@@ -199,7 +199,7 @@ ChromeLayout:
 	common|chrome/ingame-debuginfo.yaml
 	common|chrome/ingame-infochat.yaml
 	d2k|chrome/mainmenu.yaml
-    common|chrome/mainmenu-prompts.yaml
+	common|chrome/mainmenu-prompts.yaml
 	common|chrome/settings.yaml
 	common|chrome/credits.yaml
 	common|chrome/lobby.yaml

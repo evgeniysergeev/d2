@@ -7,7 +7,8 @@
  * the License, or (at your option) any later version. For more
  * information, see COPYING.
  */
-/* Based on on ForceModifiersOrderGenerator. Original Copyright: */
+/* Based on on ForceModifiersOrderGenerator.cs
+ * Original Copyright: */
 /*
  * Copyright 2007-2020 The OpenRA Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
@@ -36,10 +37,10 @@ namespace OpenRA.Mods.D2.Orders
 		public override IEnumerable<Order> Order(World world, CPos cell, int2 worldPixel, MouseInput mi)
 		{
 			mi.Modifiers |= Modifiers;
+			var orders = base.Order(world, cell, worldPixel, mi);
 
 			if (cancelOnFirstUse)
 			{
-				var orders = base.Order(world, cell, worldPixel, mi);
 				int count = 0;
 				foreach (var order in orders)
 				{
@@ -51,7 +52,7 @@ namespace OpenRA.Mods.D2.Orders
 					world.CancelInputMode();
 			}
 
-			return base.Order(world, cell, worldPixel, mi);
+			return orders;
 		}
 
 		public override string GetCursor(World world, CPos cell, int2 worldPixel, MouseInput mi)
