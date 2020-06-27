@@ -60,5 +60,7 @@ namespace OpenRA.Mods.D2.Orders
 			mi.Modifiers |= Modifiers;
 			return base.GetCursor(world, cell, worldPixel, mi);
 		}
+
+		public override bool ClearSelectionOnLeftClick { get { return false; } }
 	}
 }
