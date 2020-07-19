@@ -54,9 +54,6 @@ namespace OpenRA.Mods.D2.Widgets.Logic
 			this.world = world;
 			this.worldRenderer = worldRenderer;
 
-			if (!(world.OrderGeneratorFactory is D2UnitOrderGeneratorFactory))
-				world.OrderGeneratorFactory = new D2UnitOrderGeneratorFactory();
-
 			var textColor = Color.FromArgb(71, 71, 55);
 
 			panel = widget.GetOrNull<D2PanelWidget>("PANEL");

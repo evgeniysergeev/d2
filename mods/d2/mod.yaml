@@ -1,6 +1,6 @@
 Metadata:
 	Title: d2 mod
-	Version: 937c759
+	Version: 0d2910e
 
 ModCredits:
 	ModTabTitle: d2 mod
@@ -38,7 +38,7 @@ Packages:
 MapFolders:
 	d2|maps: System
 	~^maps/d2/original: System
-	~^maps/d2/937c759: User
+	~^maps/d2/0d2910e: User
 
 Rules:
 	d2|rules/misc.yaml

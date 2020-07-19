@@ -1,6 +1,6 @@
 #region Copyright & License Information
 /*
- * Copyright 2007-2020 The OpenRA Developers (see AUTHORS)
+ * Copyright 2007-2020 The d2 mod Developers (see AUTHORS)
  * This file is part of OpenRA, which is free software. It is made
  * available to you under the terms of the GNU General Public License
  * as published by the Free Software Foundation, either version 3 of
@@ -167,6 +167,8 @@ namespace OpenRA.Mods.D2.Traits
 				if (!Info.RenderTypes.Contains(renderType.Info.Type))
 					return;
 
+				var sprites = renderType.Variants[content.Variant];
+
 				var clear = FindClearSides(renderType, cell);
 				int index;
 
@@ -177,20 +179,20 @@ namespace OpenRA.Mods.D2.Traits
 					{
 						// Max density sprites is right after normal sprites
 						index += 16;
-						UpdateSpriteLayers(cell, renderType.Variants.First().Value[index], renderType.Palette);
+						UpdateSpriteLayers(cell, sprites, index, renderType.Palette);
 					}
 					else
 						throw new InvalidOperationException("SpriteMap does not contain an index for Max Densitty ClearSides type '{0}'".F(clear));
 				}
 				else if (SpriteMap.TryGetValue(clear, out index))
 				{
-					UpdateSpriteLayers(cell, renderType.Variants.First().Value[index], renderType.Palette);
+					UpdateSpriteLayers(cell, sprites, index, renderType.Palette);
 				}
 				else
 					throw new InvalidOperationException("SpriteMap does not contain an index for ClearSides type '{0}'".F(clear));
 			}
 			else
-				UpdateSpriteLayers(cell, null, null);
+				UpdateSpriteLayers(cell, null, 0, null);
 		}
 	}
 }

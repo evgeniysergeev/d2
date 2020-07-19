@@ -7,15 +7,25 @@
  * the License, or (at your option) any later version. For more
  * information, see COPYING.
  */
+/* based on ShroudRenderer.cs
+ * Original Copyright:
+ */
+/*
+ * Copyright 2007-2020 The OpenRA Developers (see AUTHORS)
+ * This file is part of OpenRA, which is free software. It is made
+ * available to you under the terms of the GNU General Public License
+ * as published by the Free Software Foundation, either version 3 of
+ * the License, or (at your option) any later version. For more
+ * information, see COPYING.
+ */
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using OpenRA.Graphics;
 using OpenRA.Traits;
-
-/* based on ShroudRenderer */
 
 namespace OpenRA.Mods.D2.Traits
 {
@@ -214,7 +224,7 @@ namespace OpenRA.Mods.D2.Traits
 			UpdateShroud(new ProjectedCellRegion(map, tl, br));
 		}
 
-		void UpdateShroud(ProjectedCellRegion region)
+		void UpdateShroud(IEnumerable<PPos> region)
 		{
 			foreach (var puv in region)
 			{
@@ -235,14 +245,14 @@ namespace OpenRA.Mods.D2.Traits
 				if (fogSprite != null)
 					fogPos += fogSprite.Offset - 0.5f * fogSprite.Size;
 
-				shroudLayer.Update(uv, shroudSprite, shroudPos);
-				fogLayer.Update(uv, fogSprite, fogPos);
+				shroudLayer.Update(uv, shroudSprite, shroudPos, true);
+				fogLayer.Update(uv, fogSprite, fogPos, true);
 			}
 		}
 
 		void IRenderShroud.RenderShroud(WorldRenderer wr)
 		{
-			UpdateShroud(map.ProjectedCellBounds);
+			UpdateShroud(map.ProjectedCells);
 			fogLayer.Draw(wr.Viewport);
 			shroudLayer.Draw(wr.Viewport);
 		}
