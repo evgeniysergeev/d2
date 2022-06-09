@@ -74,7 +74,7 @@ starport:
 	Exit@16:
 		SpawnOffset: -2048,-1024,0
 		ExitCell: -1,0
-	ProductionAirdrop:
+	D2ProductionAirdrop:
 		Produces: Starport
 		ActorType: frigate
 	ProductionBar:
