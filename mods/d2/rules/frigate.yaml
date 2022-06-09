@@ -8,20 +8,17 @@ frigate:
 	Health:
 		HP: 500
 	Aircraft:
-		Speed: 189 # 126 * ~1.5 for balance reasons
+		IdleBehavior: LeaveMap
+		Speed: 189
 		TurnSpeed: 4
 		Repulsable: False
 		MaximumPitch: 20
 		CruiseAltitude: 192
-		IdleBehavior: LeaveMap
 		InitialFacing: 768
+		VTOL: true
+		CanHover: true
+		CanSlide: true
 	-AppearsOnRadar:
 	Cargo:
 		MaxWeight: 20
 	RejectsOrders:
-	Buildable:
-		Description: Supply spacecraft
-	WithCargoPipsDecoration:
-		Position: BottomLeft
-		RequiresSelection: true
-		PipCount: 10
