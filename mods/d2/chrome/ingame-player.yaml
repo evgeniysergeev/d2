@@ -33,10 +33,20 @@ Container@PLAYER_WIDGETS:
 					ImageName: topbar-right
 					ClickThrough: false
 				Container@TOPBAR_BUTTONS:
-					Logic: MenuButtonsChromeLogic
+					Logic: D2MenuButtonsChromeLogic
 					X: 0
 					Y: 0
 					Children:
+						MenuButton@MENTAT_BUTTON:
+							X: 15
+							Y: 1
+							Width: 78
+							Height: 15
+							Background:
+							TooltipText: Mentat
+							TooltipContainer: TOOLTIP_CONTAINER
+							DisableWorldSounds: false
+							VisualHeight: 0
 						MenuButton@OPTIONS_BUTTON:
 							Key: escape
 							X: 103

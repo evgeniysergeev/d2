@@ -1,0 +1,110 @@
+Container@MENTAT:
+	Children:
+		LogicTicker@SIDEBAR_TICKER:
+		Container@TOP_BAR:
+			X: 0
+			Y: 0
+			Width: WINDOW_RIGHT
+			Height: 39
+			Children:
+				D2Image@TOPBAR_BACKGROUND_LEFT:
+					X: 0
+					Y: 0
+					Width: 185
+					Height: 39
+					ImageCollection: screen
+					ImageName: topbar-left
+					ClickThrough: false
+				D2Image@TOPBAR_BACKGROUND:
+					X: 185
+					Y: 0
+					Width: WINDOW_RIGHT - 130 - 185
+					Height: 39
+					ImageCollection: screen
+					ImageName: topbar
+					FillBackground: true
+					ClickThrough: false
+				D2Image@TOPBAR_BACKGROUND_RIGHT:
+					X: WINDOW_RIGHT - 130
+					Y: 0
+					Width: 130
+					Height: 39
+					ImageCollection: screen
+					ImageName: topbar-right
+					ClickThrough: false
+				Container@TOPBAR_BUTTONS:
+					Logic: D2MenuButtonsChromeLogic
+					X: 0
+					Y: 0
+					Children:
+						MenuButton@MENTAT_BUTTON:
+							X: 15
+							Y: 1
+							Width: 78
+							Height: 15
+							Background:
+							TooltipText: Mentat
+							TooltipContainer: TOOLTIP_CONTAINER
+							DisableWorldSounds: false
+							VisualHeight: 0
+						MenuButton@OPTIONS_BUTTON:
+							Key: escape
+							X: 103
+							Y: 1
+							Width: 78
+							Height: 15
+							Background:
+							TooltipText: Options
+							TooltipContainer: TOOLTIP_CONTAINER
+							DisableWorldSounds: true
+							VisualHeight: 0
+						Label@GAME_TIMER:
+							Logic: GameTimerLogic
+							X: WINDOW_RIGHT - 350
+							Y: 0
+							Width: 50
+							Height: 22
+							Align: Center
+							Font: TinyBold
+						LabelWithTooltip@CASH:
+							Logic: IngameCashCounterLogic
+							X: WINDOW_RIGHT - 300
+							Y: 0
+							Width: 50
+							Height: 22
+							Font: Bold
+							Text: {0}
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipTemplate: SIMPLE_TOOLTIP
+						LabelWithTooltip@POWER:
+							Logic: IngamePowerCounterLogic
+							X: WINDOW_RIGHT - 250
+							Y: 0
+							Width: 50
+							Height: 22
+							Align: Right
+							Font: Bold
+							Text: {0}
+							TooltipContainer: TOOLTIP_CONTAINER
+							TooltipTemplate: SIMPLE_TOOLTIP
+							Children:
+								Image@POWER_ICON:
+									X: PARENT_RIGHT + 0
+									Y: 5
+									ImageCollection: power-icons
+									ImageName: power-normal
+		Container@MAINWINDOW:
+			X: 0
+			Y: 0
+			Width: 320
+			Height: 200
+			ClickThrough: false
+			Children:
+				D2Image@BACKGROUND:
+					X: 0
+					Y: 0
+					Width: 320
+					Height: 200
+					ImageCollection: mentat-atreides
+					ImageName: background
+					ClickThrough: false

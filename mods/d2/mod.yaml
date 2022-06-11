@@ -228,6 +228,7 @@ ChromeLayout:
 	d2|chrome/ingame-player.yaml
 	d2|chrome/assetbrowser.yaml
 	d2|chrome/missionbrowser.yaml
+	d2|chrome/mentat.yaml
 	common|chrome/gamesave-browser.yaml
 	common|chrome/gamesave-loading.yaml
 
